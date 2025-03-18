@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Hello World</title>
+	<link type="text/css" rel="stylesheet" href="bootstrap.min.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+	<div id="pageSwitch" class="carousel slide carousel-fade" data-bs-ride="carousel">
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="./rightBanner/sunrise.png" class="rightBanner">
+				<img src="./logo.svg" class="rightLogo">
+				<h1 class="leftTitleText dayTitle" data-additive-text=" Schedule"></h1>
+				<h3 class="leftTitleText currentDay"></h3>
+			</div>
+			<div class="carousel-item">
+				<img src="./rightBanner/nightfall.png" class="rightBanner">
+				<img src="./logo.svg" class="rightLogo">
+				<h1 class="leftTitleText dayTitle" data-additive-text=" Schedule"></h1>
+				<h3 class="leftTitleText currentDay"></h3>
+			</div>
+			<div class="carousel-item properBanner">
+				<img src="./rightBanner/office-staff_274679-60.jpg" class="rightBanner">
+				<img src="./logo.svg" class="rightLogo">
+				<h1 class="leftTitleText dayTitle" data-additive-text=" Staff On-call"></h1>
+				<h3 class="leftTitleText currentDay"></h3>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+	<script src="./helperfuncs.js"></script>
+	<script>
+		for (const scheduleDayTitle of document.getElementsByClassName("dayTitle"))
+			scheduleDayTitle.innerHTML = new Date().toLocaleDateString("en-US", { weekday: "long"})
+				+ scheduleDayTitle.getAttribute("data-additive-text");
+
+		const curFormatDay = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }).split(" ")
+		curFormatDay[1] = getOrdinal(parseInt(curFormatDay[1]), true) + ",";
+		for (const currentDay of document.getElementsByClassName("currentDay"))
+			currentDay.innerHTML = curFormatDay.join(" ");
+	</script>
+</body>
+
+</html>

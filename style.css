@@ -1,0 +1,73 @@
+body,
+#pageSwitch carousel-item {
+	background-color: #283745;
+	color: white;
+}
+
+#pageSwitch .carousel-item {
+	display: grid;
+	width: 100dvw;
+	height: 100dvh;
+}
+
+#pageSwitch .carousel-item > * {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+#pageSwitch > .carousel-item > .rightBanner,
+#pageSwitch > .carousel-item > .leftBanner {
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
+}
+	#pageSwitch > .carousel-item > .rightBanner {
+		justify-self: end;
+	}
+	#pageSwitch > .carousel-item > .leftBanner {
+		justify-self: start;
+	}
+	#pageSwitch > .carousel-item.properBanner > .rightBanner,
+	#pageSwitch > .carousel-item.properBanner > .leftBanner {
+		width: 35%;
+	}
+
+.rightLogo {
+	justify-self: end;
+	align-self: start;
+	width: 30%;
+    margin-top: 5vh;
+    margin-right: 5vw;
+
+	z-index: 3;
+}
+
+.leftTitleText {
+	justify-self: start;
+	align-self: start;
+	margin-left: 5vw;
+	font-family: "Merriweather", serif;
+	background-color: #283745;
+
+	z-index: 3;
+}
+
+.dayTitle {
+	margin-top: 5vh;
+	font-size: 4rem;
+}
+
+.currentDay {
+	margin-top: 14vh;
+}
+
+.properBG::before {
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(105deg, #283745 68.5%, transparent 72.5%);
+	content: "";
+
+	grid-column: 1;
+	grid-row: 1;
+	z-index: 2;
+}
