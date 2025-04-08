@@ -18,12 +18,40 @@
 				<img src="./logo.svg" class="rightLogo">
 				<h1 class="leftTitleText dayTitle" data-additive-text=" Schedule"></h1>
 				<h3 class="leftTitleText currentDay"></h3>
+				<div class="grid schedule-grid" id="sunday-schedule-day">
+				</div>
+				<div class="grid schedule-grid" id="monday-schedule-day">
+				</div>
+				<div class="grid schedule-grid" id="tuesday-schedule-day">
+				</div>
+				<div class="grid schedule-grid" id="wednesday-schedule-day">
+				</div>
+				<div class="grid schedule-grid" id="thursday-schedule-day">
+				</div>
+				<div class="grid schedule-grid" id="friday-schedule-day">
+				</div>
+				<div class="grid schedule-grid" id="saturday-schedule-day">
+				</div>
 			</div>
 			<div class="carousel-item">
 				<img src="./rightBanner/nightfall.png" class="rightBanner">
 				<img src="./logo.svg" class="rightLogo">
 				<h1 class="leftTitleText dayTitle" data-additive-text=" Schedule"></h1>
 				<h3 class="leftTitleText currentDay"></h3>
+				<div class="grid schedule-grid" id="sunday-schedule-night">
+				</div>
+				<div class="grid schedule-grid" id="monday-schedule-night">
+				</div>
+				<div class="grid schedule-grid" id="tuesday-schedule-night">
+				</div>
+				<div class="grid schedule-grid" id="wednesday-schedule-night">
+				</div>
+				<div class="grid schedule-grid" id="thursday-schedule-night">
+				</div>
+				<div class="grid schedule-grid" id="friday-schedule-night">
+				</div>
+				<div class="grid schedule-grid" id="saturday-schedule-night">
+				</div>
 			</div>
 			<div class="carousel-item properBanner">
 				<img src="./rightBanner/office-staff_274679-60.jpg" class="rightBanner">
@@ -45,6 +73,7 @@
 		for (const currentDay of document.getElementsByClassName("currentDay"))
 			currentDay.innerHTML = curFormatDay.join(" ");
 	</script>
+	<script type="module" src="./loadDay.js"></script>
 </body>
 
 </html>
