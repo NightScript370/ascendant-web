@@ -51,9 +51,4 @@ export default async function onlineSchedule(url, silent=false) {
 	}
 }
 
-onlineSchedule("./dailySchedule.ini").then(() => {
-	const getToday = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][new Date().getDay()];
-	Array.from(document.getElementsByClassName("schedule-grid"))
-		.filter((elem) => !elem.id.includes(getToday))
-		.forEach((elem) => elem.style.display = "none");
-})
+onlineSchedule("./dailySchedule.ini")
