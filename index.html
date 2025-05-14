@@ -13,10 +13,8 @@
 <body>
 	<div id="pageSwitch" class="carousel slide carousel-fade" data-bs-ride="carousel">
 		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img src="./rightBanner/sunrise.png" class="rightBanner">
+			<div class="carousel-item active" id="morning-schedule">
 				<img src="./logo.svg" class="rightLogo">
-				<h1 class="leftTitleText dayTitle" data-additive-text=" Schedule"></h1>
 				<h3 class="leftTitleText currentDay"></h3>
 				<div class="grid schedule-grid" id="sunday-schedule-day">
 				</div>
@@ -33,8 +31,7 @@
 				<div class="grid schedule-grid" id="saturday-schedule-day">
 				</div>
 			</div>
-			<div class="carousel-item">
-				<img src="./rightBanner/nightfall.png" class="rightBanner">
+			<div class="carousel-item" id="afternoon-schedule">
 				<img src="./logo.svg" class="rightLogo">
 				<h1 class="leftTitleText dayTitle" data-additive-text=" Schedule"></h1>
 				<h3 class="leftTitleText currentDay"></h3>
@@ -62,13 +59,20 @@
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-	<script src="./helperfuncs.js"></script>
-	<script>
-		function switchDay() {
-			for (const scheduleDayTitle of document.getElementsByClassName("dayTitle"))
-				scheduleDayTitle.innerHTML = new Date().toLocaleDateString("en-US", { weekday: "long"})
-					+ scheduleDayTitle.getAttribute("data-additive-text");
+	<script type="module">
+		import onlineSchedule from "./loadDay.js";
+		onlineSchedule("./dailySchedule.ini", false, () => {
+			switchDay();
 
+			// Schedule the function to run at midnight
+			setTimeout(() => {
+				switchDay();
+				// Set up interval for subsequent days
+				setInterval(switchDay, 24 * 60 * 60 * 1000); // Every 24 hours
+			}, calculateTimeToMidnight());
+		});
+
+		function switchDay() {
 			const curFormatDay = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }).split(" ")
 			curFormatDay[1] = getOrdinal(parseInt(curFormatDay[1]), true) + ",";
 			for (const currentDay of document.getElementsByClassName("currentDay"))
@@ -84,8 +88,6 @@
 				.forEach((elem) => elem.style.removeProperty("display"));
 		}
 
-		switchDay();
-
 		// Calculate the time remaining until midnight
 		function calculateTimeToMidnight() {
 			const now = new Date();
@@ -94,14 +96,13 @@
 			return midnight - now;
 		}
 
-		// Schedule the function to run at midnight
-		setTimeout(() => {
-			switchDay();
-			// Set up interval for subsequent days
-			setInterval(switchDay, 24 * 60 * 60 * 1000); // Every 24 hours
-		}, calculateTimeToMidnight());
+		function getOrdinal (n, htmlSup=false) {
+			return n.toString()
+				+ (htmlSup ? "<sup>" : "")
+				+ { e: "st", o: "nd", w: "rd", h: "th" }[new Intl.PluralRules("en", { type: "ordinal" }).select(n)[2]]
+				+ (htmlSup ? "</sup>" : "")
+		}
 	</script>
-	<script type="module" src="./loadDay.js"></script>
 </body>
 
 </html>
