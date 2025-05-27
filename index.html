@@ -33,7 +33,6 @@
 			</div>
 			<div class="carousel-item" id="afternoon-schedule">
 				<img src="./logo.svg" class="rightLogo">
-				<h1 class="leftTitleText dayTitle" data-additive-text=" Schedule"></h1>
 				<h3 class="leftTitleText currentDay"></h3>
 				<div class="grid schedule-grid" id="sunday-schedule-night">
 				</div>
@@ -73,6 +72,10 @@
 		});
 
 		function switchDay() {
+			for (const scheduleDayTitle of document.getElementsByClassName("dayTitle"))
+				scheduleDayTitle.innerHTML = new Date().toLocaleDateString("en-US", { weekday: "long"})
+					+ scheduleDayTitle.getAttribute("data-weekday-title");
+
 			const curFormatDay = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }).split(" ")
 			curFormatDay[1] = getOrdinal(parseInt(curFormatDay[1]), true) + ",";
 			for (const currentDay of document.getElementsByClassName("currentDay"))

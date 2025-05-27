@@ -39,7 +39,7 @@ export default async function onlineSchedule(url, silent=false, callback=() => {
 			if ('DayLeftTitle' in slideCfg) {
 				const h1 = document.createElement("h1");
 				h1.classList.add("leftTitleText", "dayTitle");
-				h1.innerHTML = new Date().toLocaleDateString("en-US", { weekday: "long"}) + slideCfg.DayLeftTitle;
+				h1.setAttribute('data-weekday-title', " " + slideCfg.DayLeftTitle);
 
 				if (slide)
 					slide.appendChild(h1);
